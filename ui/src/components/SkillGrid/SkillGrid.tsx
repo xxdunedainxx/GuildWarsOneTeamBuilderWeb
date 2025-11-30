@@ -134,7 +134,7 @@ export default class SkillGrid extends Component<{}, GridRowState> {
           {/* Icon in top left */}
           {this.hasPrimaryClassSelected() && (
           <img
-            src={`/classIcons/${this.state.selectedClassPrimary}.png`}
+            src={`./classIcons/${this.state.selectedClassPrimary}.png`}
             alt="Class icon"
             style={{
               width: "40px",
@@ -147,7 +147,7 @@ export default class SkillGrid extends Component<{}, GridRowState> {
 
           {this.hasSecondaryClassSelected() && (
           <img
-            src={`/classIcons/${this.state.selectedClassSecondary}.png`}
+            src={`./classIcons/${this.state.selectedClassSecondary}.png`}
             alt="Class icon"
             style={{
               width: "40px",

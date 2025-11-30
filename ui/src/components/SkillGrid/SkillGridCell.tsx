@@ -173,19 +173,19 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                       <div><strong>Attribute:</strong> {attribute}</div>
                       <div>
                         <strong>
-                          <img src="/utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                          <img src="./utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
                           Energy:
                         </strong> {energy}
                       </div>
                       <div>
                         <strong>
-                          <img src="/utilIcons/activation.png" alt="Activation" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                          <img src="./utilIcons/activation.png" alt="Activation" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
                           Activation:
                         </strong> {activationTime}s
                       </div>
                       <div>
                         <strong>
-                          <img src="/utilIcons/rechargeIcon.png" alt="Recharge" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                          <img src="./utilIcons/rechargeIcon.png" alt="Recharge" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
                           Recharge:
                         </strong> {rechargeTime}s
                       </div>
@@ -196,7 +196,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
             >
               <div style={{ textAlign: "center", cursor: "pointer" }}>
                 <img
-                  src={`/images/${name}.jpg`}
+                  src={`./images/${name}.jpg`}
                   alt={name}
                   style={{ width: "60px", height: "60px", display: "block", margin: "0 auto" }}
                 />
