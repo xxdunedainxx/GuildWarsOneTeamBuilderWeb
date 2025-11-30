@@ -8,6 +8,7 @@ This document contains features that we would **LIKE** to see in this applicatio
 * Add ability to specify class attribute settings
 * Add ability to configure gear specifications per class 
 * BUG - fix issue with some of the classes data mining
+* Mobile support - drag and drop does not work on mobile. Overall website experience may need to change. 
 
 ## UI
 
@@ -22,3 +23,9 @@ This document contains features that we would **LIKE** to see in this applicatio
 * User guide 
 * General code clean up and code documentation
 * Contributions guide 
+
+## User requests
+
+* Discord integration 
+* Guild wars template uploading - https://wiki.guildwars.com/wiki/Skill_template_format
+* Export to gw skill format 
