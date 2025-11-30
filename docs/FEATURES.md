@@ -9,6 +9,8 @@ This document contains features that we would **LIKE** to see in this applicatio
 * Add ability to configure gear specifications per class 
 * BUG - fix issue with some of the classes data mining
 * Mobile support - drag and drop does not work on mobile. Overall website experience may need to change. 
+* rename site from 'ui' --> 'GW Team builder'
+* Github links/icon in footer working 
 
 ## UI
 
@@ -17,6 +19,7 @@ This document contains features that we would **LIKE** to see in this applicatio
 * Clear skills when selecting class
 * Player skill bars could be made more concise
 * Player skill bar should clear skills when class changes 
+* Make navbar look nice lol 
 
 ## Documentation 
 
