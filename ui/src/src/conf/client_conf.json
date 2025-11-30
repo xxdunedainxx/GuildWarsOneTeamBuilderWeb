@@ -1,0 +1,36 @@
+{
+  "local": {
+    "headers" : ["test"],
+    "logging" : {
+      "level" : "DEBUG",
+      "remoteLoggingEnabled": false
+    },
+    "backend" : {
+      "ssl"  : false,
+      "host" : "localhost",
+      "appHealthPort" : 9090,
+      "port" : 80,
+      "hostRoute" : "/backend"
+    },
+    "dev" : {
+      "mockData" : true
+    }
+  },
+  "prod" : {
+    "headers" : ["test"],
+    "logging" : {
+      "level" : "INFO",
+      "remoteLoggingEnabled": false
+    },
+    "backend" : {
+      "ssl"  : true,
+      "host" : "lindsay-wildlife-apps.zee-aws.net",
+      "hostRoute" : "/backend",
+      "appHealthPort" : 9090,
+      "port" : 443
+    },
+    "dev" : {
+      "mockData" : false
+    }
+  }
+}
