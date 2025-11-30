@@ -6,7 +6,7 @@ export default defineConfig(({ command, server }) => {
   const isLocal = command === 'serve'
   return {
     plugins: [react()],
-    // use '/' if its local dev, otherwise use the github site base 
+    // use '/' if its local dev, otherwise use the github site base
     base: isLocal ? '/' : '/GuildWarsOneTeamBuilderWeb/site/',
   }
 })
