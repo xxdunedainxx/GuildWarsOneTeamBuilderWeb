@@ -20,11 +20,11 @@ return (
 
       {/* Center: Optional links/icons */}
       <div style={{ display: "flex", gap: "15px" }}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/xxdunedainxx/GuildWarsOneTeamBuilderWeb/tree/main" target="_blank" rel="noopener noreferrer">
           <img
-            src="/icons/github.svg"
+            src="./githubIcon.jpeg"
             alt="GitHub"
-            style={{ width: "24px", height: "24px" }}
+            style={{ width: "24px", height: "24px", color: "grey" }}
           />
         </a>
       </div>

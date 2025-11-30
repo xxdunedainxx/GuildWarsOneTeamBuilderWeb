@@ -1,8 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '/GuildWarsOneTeamBuilderWeb/site'
+export default defineConfig(({ command, server }) => {
+  // Conditionally modify base depending on if its local dev vs in the github site
+  const isLocal = command === 'serve'
+  return {
+    plugins: [react()],
+    // use '/' if its local dev, otherwise use the github site base 
+    base: isLocal ? '/' : '/GuildWarsOneTeamBuilderWeb/site/',
+  }
 })
