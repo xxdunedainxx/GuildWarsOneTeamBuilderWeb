@@ -26,6 +26,8 @@ This document contains features that we would **LIKE** to see in this applicatio
 
 ## User requests
 
-* Discord integration 
+* Discord integration - requires a server. 
+  * Alternatively, could add a button that 'exports' the template to a discord friendly message that the user can just copy and send. 
 * Guild wars template uploading - https://wiki.guildwars.com/wiki/Skill_template_format
 * Export to gw skill format 
+* Make 'Player 1', 'Player 2'.. etc configurable with a name 
