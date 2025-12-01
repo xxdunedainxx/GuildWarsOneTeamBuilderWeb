@@ -11,6 +11,7 @@ export class GwClasses {
 	static Ritualist="Ritualist"
 	static Paragon="Paragon"
 	static Dervish="Dervish"
+	static Common="Common"
 }
 
 export default GwClasses;

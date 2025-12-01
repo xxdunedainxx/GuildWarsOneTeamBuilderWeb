@@ -42,7 +42,9 @@ export class GwSkill {
 		// optional - adrenaline
 		adrenaline = null,
 		// optional sacrifice attribute
-		sacrifice = null
+		sacrifice = null,
+		// optional - exhaustion
+		exhaustion = null
 	){
 		this.skillIconLocation = skillIconLocation
 		this.name = name
@@ -61,6 +63,7 @@ export class GwSkill {
 		}
 		this.adrenaline = adrenaline
 		this.sacrifice = sacrifice
+		this.exhaustion = exhaustion
 	}
 }
 

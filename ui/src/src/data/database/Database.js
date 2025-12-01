@@ -18,8 +18,7 @@ export class Database {
     Database.SerializeDBIntoObject()
   }
 
-  // Converts the JSON db into a structured db 
-  // todo -- might be memory intensive, if so might just rely on parsing the JSON DB 
+  // Converts the JSON db into a structured db
   static SerializeDBIntoObject() {
   	Logger.info("Serialize json DB into structured db")
   	Database.SerializeClassSkills(GwClass.Warrior)
@@ -32,6 +31,7 @@ export class Database {
   	Database.SerializeClassSkills(GwClass.Ritualist)
   	Database.SerializeClassSkills(GwClass.Paragon)
   	Database.SerializeClassSkills(GwClass.Dervish)
+  	Database.SerializeClassSkills(GwClass.Common)
 
 
 
@@ -75,9 +75,11 @@ export class Database {
 	  	clazzSkills[i]['attribute'],
 	  	clazzSkills[i]['campaign'],
 	  	clazz,
-	  	clazzSkills[i]['addrenaline']
+	  	clazzSkills[i]['addrenaline'],
+	  	clazzSkills[i]['sacrifice'],
+	  	clazzSkills[i]['exhaust']
 	  )
-	  console.log(gwSkill)
+	  // dont need to log it -- too many logs console.log(gwSkill)
 	  Database.databaseData[clazz][gwSkill.name] = gwSkill
 	  Database.skillNames.push(gwSkill.name)
 	}

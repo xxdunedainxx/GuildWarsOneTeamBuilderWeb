@@ -32,8 +32,14 @@ export default class SkillGrid extends Component<{}, GridRowState> {
 
     let skillStructured = Database.GetSkillByName(skill)
     if (!alreadyDropped &&
-    (skillStructured.clazz == this.state.selectedClassSecondary
-        || skillStructured.clazz == this.state.selectedClassPrimary) && (this.state.hasElite == false || skillStructured.isElite == false)) {
+    (((skillStructured.clazz == this.state.selectedClassSecondary
+        || skillStructured.clazz == this.state.selectedClassPrimary) &&
+        (this.state.hasElite == false || skillStructured.isElite == false))
+            // can add res sig to any bar
+            || skillStructured.clazz == GwClasses.Common
+        )
+      ) {
+      // add it
       this.setState({ droppedSkills: [...droppedSkills, skill], hasElite: skillStructured.isElite });
     } else {
         let message="Skill already dropped or not compatible with primary/secondary classes"
@@ -207,6 +213,8 @@ export default class SkillGrid extends Component<{}, GridRowState> {
                 rechargeTime={0}
                 description=""
                 adrenaline={0}
+                exhaustion=""
+                sacrifice={0}
                 isDraggableSkill={true}
                 handleSkillDropped={this.handleSkillDropped}
                 handleSkillRemoved={this.handleSkillRemoved}

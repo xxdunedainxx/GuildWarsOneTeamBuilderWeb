@@ -15,6 +15,8 @@ interface SkillGridCellProps {
   activationTime: number;
   rechargeTime: number;
   description: string;
+  sacrifice: string;
+  exhaustion: number;
   isDraggableSkill?: boolean; // whether this cell can accept drops
   handleSkillDropped?: (skillName: string) => boolean; // callback when a skill is dropped
   handleSkillRemoved?: (skillName: string, resetCell?: () => void) => boolean; // callback when removed
@@ -28,6 +30,8 @@ interface SkillGridCellState {
   activationTime: number;
   rechargeTime: number;
   description: string;
+  sacrifice: string;
+  exhaustion: number;
 }
 
 export default class SkillGridCell extends Component<SkillGridCellProps, SkillGridCellState> {
@@ -45,7 +49,9 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
       activationTime: props.activationTime,
       rechargeTime: props.rechargeTime,
       description: props.description,
-      adrenaline: props.adrenaline
+      adrenaline: props.adrenaline,
+      sacrifice: props.sacrifice,
+      exhaustion: props.exhaustion
     };
   }
 
@@ -71,7 +77,9 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
             activationTime: skill.activationTime,
             rechargeTime: skill.rechargeTime,
             description: skill.description,
-            adrenaline: skill.adrenaline
+            adrenaline: skill.adrenaline,
+            sacrifice: skill.sacrifice,
+            exhaustion: skill.exhaustion
           });
         }
       }
@@ -108,12 +116,14 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
       activationTime: 0,
       rechargeTime: 0,
       description: "",
-      adrenaline: 0
+      adrenaline: 0,
+      sacrifice: "",
+      exhaustion: 0
     });
   };
 
   render() {
-    const { name, clazz, attribute, energy, activationTime, rechargeTime, description, adrenaline } = this.state;
+    const { name, clazz, attribute, energy, activationTime, rechargeTime, description, adrenaline, sacrifice, exhaustion } = this.state;
     const { isDraggableSkill } = this.props;
 
     return (
@@ -184,6 +194,22 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                               <img src="./utilIcons/adrenaline.png" alt="Adrenaline" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
                               Adrenaline:
                             </strong> {adrenaline}
+                          </div>
+                        )}
+                       {sacrifice !== 0 && sacrifice !== "" && sacrifice !== undefined && (
+                          <div>
+                            <strong>
+                              <img src="./utilIcons/sacrifice.png" alt="sacrifice" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              sacrifice:
+                            </strong> {sacrifice}
+                          </div>
+                        )}
+                        {exhaustion !== 0 && exhaustion !== "" && exhaustion !== undefined && (
+                          <div>
+                            <strong>
+                              <img src="./utilIcons/exhaustion.png" alt="exhaustion" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              exhaustion:
+                            </strong> {exhaustion}
                           </div>
                         )}
                       <div>

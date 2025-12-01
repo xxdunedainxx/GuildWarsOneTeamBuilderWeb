@@ -92,6 +92,8 @@ class SearchableSkillGrid extends Component<{}, { searchTerm: string; selectedCl
               rechargeTime={skillObj.rechargeTime}
               description={skillObj.description}
               adrenaline={skillObj.adrenaline}
+              exhaustion={skillObj.exhaustion}
+              sacrifice={skillObj.sacrifice}
               isDraggableSkill={false}
             />
           ))}
