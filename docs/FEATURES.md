@@ -52,3 +52,8 @@ Feature Emoji table
 * 💭 Guild wars template uploading - https://wiki.guildwars.com/wiki/Skill_template_format
 * 💭 Export to gw skill format 
 * 💭 Make 'Player 1', 'Player 2'.. etc configurable with a name 
+
+## Misc/Dev related
+
+* 💭 Compile and prep release script 
+* 💭 Make vite 'base' url more configurable for local dev 

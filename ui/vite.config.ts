@@ -7,7 +7,8 @@ export default defineConfig(({ command }) => {
   return {
     plugins: [react()],
     // use '/' if its local dev, otherwise use the github site base
-    base: '/'
-    //base: isLocal ? '/' : '/GuildWarsOneTeamBuilderWeb/site/',
+//     base: '/'
+// TODO - make configurable 
+    base: isLocal ? '/' : '/GuildWarsOneTeamBuilderWeb/site/',
   }
 })
