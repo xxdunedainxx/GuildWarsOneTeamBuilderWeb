@@ -26,6 +26,9 @@ Feature Emoji table
 * ✅ **(Intended release v0.0.2)** BUG - Fix issue with adrenaline vs overcast - see vaporblade as an exmaple  
 * ✅ **(Intended release v0.0.2)** BUG - Fix data mining issue with res sig
 * 💭 Support 'None' attribute skills in UI (res sig)
+* 👀 BUG - Fix data mining issue with exhaust attribute 
+* 👀 BUG - Support UI rendering for sufferring and exhaust attributes 
+
 
 ## UI
 
