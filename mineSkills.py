@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import sys, traceback
 import json
+import os
 
 FAILED_SKILLS_BY_CATEGORY={}
 
@@ -13,12 +14,17 @@ def errorStackTrace(e):
     return errorMessage
 
 def downloadSkillImage(url, skillName):
-    response = requests.get(url)
     fileName = f"dataMiningResults/images/{skillName}.jpg"
-    with open(fileName, "wb+") as f:
-        f.write(response.content)
+    # small optimization, check if file already cached
+    if os.path.isfile(fileName):
+        print(f"File already exists: {fileName}")
+    else:
+        print(f"File does not exist, downloading: {fileName}")
+        response = requests.get(url)
+        with open(fileName, "wb+") as f:
+            f.write(response.content)
 
-    print(f"Downloaded {url}")
+        print(f"Downloaded {url}")
 
 class SkillContainer:
     def __init__(
@@ -33,7 +39,8 @@ class SkillContainer:
         attribute: str,
         campaign: str,
         clazz: str,
-        sacrifice: str
+        sacrifice: str,
+        exhaust: int
     ):
         self.icon = iconLink
         self.name = name
@@ -46,6 +53,7 @@ class SkillContainer:
         self.campaign = campaign
         self.clazz = clazz
         self.sacrifice = sacrifice
+        self.exhaust = exhaust
 
     def serialize(self):
         return {
@@ -59,7 +67,8 @@ class SkillContainer:
             "attribute": str(self.attribute),
             "campaign": self.campaign,
             "class": self.clazz,
-            "sacrifice": self.sacrifice
+            "sacrifice": self.sacrifice,
+            "exhaust" : self.exhaust
         }
 
 def processSkillList(url: str, clazz: str, allSkillsByclass):
@@ -89,16 +98,30 @@ def processSkillList(url: str, clazz: str, allSkillsByclass):
                 name=rowTableHeaders[1].find("a").contents
                 if type(name) == list:
                     name = str(rowTableHeaders[1].find("a").contents[0])
-                description=rowTableData[0].contents
-                if type(description) == list:
-                    description = str(rowTableData[0].contents[0])
+
+                description=str(rowTableData[0].contents).strip().replace("[","").replace("]","")
+
+                # Not required
+                # if type(description) == list:
+                #     description = str(rowTableData[0].contents[0])
+
                 if " 0 " in str(rowTableData[1].contents) or ">0<" in str(rowTableData[1].contents):
                     addrenaline = 0
                     sacrifice="0"
+                    exhaust=0
                 else:
                     # If int, its an adrenaline record
-                    if str(rowTableData[1].contents[0]).isdigit():
-                        addrenaline=int(rowTableData[1].contents[0])
+                    if str(rowTableData[1].contents[0]).strip().isdigit():
+                        # if elementalist - exhaustion column not adrenaline
+                        if clazz == "Elementalist":
+                            exhaust=int(str(rowTableData[1].contents[0]).strip())
+                            addrenaline=0
+                            sacrifice=0
+                        else:
+                            # otherwise, likely adrenaline
+                            addrenaline=int(str(rowTableData[1].contents[0]).strip())
+                            exhaust=0
+                            sacrifice=0
                     else:
                         # this is a sacrifice record, not adrenaline
                         sacrifice=str(rowTableData[1].contents[1]).strip()
@@ -126,7 +149,8 @@ def processSkillList(url: str, clazz: str, allSkillsByclass):
                     attribute=attribute,
                     campaign=campaign,
                     clazz=clazz,
-                    sacrifice=sacrifice
+                    sacrifice=sacrifice,
+                    exhaust=exhaust
                 )
 
                 allSkillsByclass[clazz].append(skill)
@@ -180,7 +204,7 @@ if __name__ == '__main__':
 
     }
 
-    # Warrior skills
+    # # Warrior skills
     processSkillList(
         "https://wiki.guildwars.com/wiki/List_of_warrior_skills",
         clazz="Warrior",
