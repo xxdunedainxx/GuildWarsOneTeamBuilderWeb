@@ -7,10 +7,11 @@ import Database from './src/data/database/Database';
 import { Routes, Route, Link } from "react-router-dom";
 // Lazy-load TeamBuilder
 const TeamBuilder = lazy(() =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(import("./pages/TeamBuilder"));
-    }, 1500); // 1.5 sec artificial delay
+  new Promise<{ default: React.ComponentType<any> }>((resolve) => {
+    setTimeout(() =>
+      resolve(import("./pages/TeamBuilder") as unknown as { default: React.ComponentType<any> }),
+      1500
+    );
   })
 );
 import Home from "./pages/Home";
@@ -19,7 +20,7 @@ import ChangeLog from "./pages/ChangeLog";
 import About from "./pages/About";
 import UserGuide from "./pages/UserGuide";
 import Footer from "./components/common/Footer";
-import NavBar from "./components/common/NavBar";
+import NavBar from "./components/common/Navbar";
 
 function App() {
   const [count, setCount] = useState(0)

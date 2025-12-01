@@ -213,8 +213,8 @@ export default class SkillGrid extends Component<{}, GridRowState> {
                 rechargeTime={0}
                 description=""
                 adrenaline={0}
-                exhaustion=""
-                sacrifice={0}
+                exhaustion={0}
+                sacrifice="0"
                 isDraggableSkill={true}
                 handleSkillDropped={this.handleSkillDropped}
                 handleSkillRemoved={this.handleSkillRemoved}

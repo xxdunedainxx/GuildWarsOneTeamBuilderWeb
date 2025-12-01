@@ -116,12 +116,12 @@ def processSkillList(url: str, clazz: str, allSkillsByclass):
                         if clazz == "Elementalist":
                             exhaust=int(str(rowTableData[1].contents[0]).strip())
                             addrenaline=0
-                            sacrifice=0
+                            sacrifice="0"
                         else:
                             # otherwise, likely adrenaline
                             addrenaline=int(str(rowTableData[1].contents[0]).strip())
                             exhaust=0
-                            sacrifice=0
+                            sacrifice="0"
                     else:
                         # this is a sacrifice record, not adrenaline
                         sacrifice=str(rowTableData[1].contents[1]).strip()

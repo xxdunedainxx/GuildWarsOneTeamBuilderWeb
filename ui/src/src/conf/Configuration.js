@@ -9,7 +9,7 @@ export class Configuration {
   static remoteHost
   static remoteHostPort
   static mockData = false
-  static version = "0.0.1"
+  static version = "0.0.2"
 
   static Init() {
     console.log(env)

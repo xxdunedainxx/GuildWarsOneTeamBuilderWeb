@@ -15,6 +15,7 @@ interface SkillGridCellProps {
   activationTime: number;
   rechargeTime: number;
   description: string;
+  adrenaline: number;
   sacrifice: string;
   exhaustion: number;
   isDraggableSkill?: boolean; // whether this cell can accept drops
@@ -30,6 +31,7 @@ interface SkillGridCellState {
   activationTime: number;
   rechargeTime: number;
   description: string;
+  adrenaline: number;
   sacrifice: string;
   exhaustion: number;
 }
@@ -188,15 +190,16 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                             </strong> {energy}
                           </div>
                         )}
-                       {adrenaline !== 0 && adrenaline !== "" && adrenaline !== undefined && (
+                       {adrenaline !== 0 && adrenaline !== undefined && (
                           <div>
                             <strong>
                               <img src="./utilIcons/adrenaline.png" alt="Adrenaline" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                               Adrenaline:
                             </strong> {adrenaline}
                           </div>
-                        )}
-                       {sacrifice !== 0 && sacrifice !== "" && sacrifice !== undefined && (
+                          )
+                        }
+                       {sacrifice !== "0" && sacrifice !== "" && sacrifice !== undefined && (sacrifice && String(sacrifice).includes('%')) && (
                           <div>
                             <strong>
                               <img src="./utilIcons/sacrifice.png" alt="sacrifice" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
@@ -204,7 +207,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                             </strong> {sacrifice}
                           </div>
                         )}
-                        {exhaustion !== 0 && exhaustion !== "" && exhaustion !== undefined && (
+                        {exhaustion !== 0 && exhaustion !== undefined && (
                           <div>
                             <strong>
                               <img src="./utilIcons/exhaustion.png" alt="exhaustion" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
