@@ -32,10 +32,11 @@ class SkillContainer:
         rechargeTime: int,
         attribute: str,
         campaign: str,
-        clazz: str
+        clazz: str,
+        sacrifice: str
     ):
         self.icon = iconLink
-        self.name = name[0]
+        self.name = name
         self.description = description
         self.addrenaline = addrenalineNeeded
         self.energy = energyNeeded
@@ -44,6 +45,7 @@ class SkillContainer:
         self.attribute = attribute
         self.campaign = campaign
         self.clazz = clazz
+        self.sacrifice = sacrifice
 
     def serialize(self):
         return {
@@ -56,7 +58,8 @@ class SkillContainer:
             "rechargeTime": self.rechargeTime,
             "attribute": str(self.attribute),
             "campaign": self.campaign,
-            "class": self.clazz
+            "class": self.clazz,
+            "sacrifice": self.sacrifice
         }
 
 def processSkillList(url: str, clazz: str, allSkillsByclass):
@@ -84,16 +87,34 @@ def processSkillList(url: str, clazz: str, allSkillsByclass):
             if len(rowTableData) != 0:
                 imageLink=rowTableHeaders[0].find("img").get("src")
                 name=rowTableHeaders[1].find("a").contents
-                description=str(rowTableData[0].contents)
+                if type(name) == list:
+                    name = str(rowTableHeaders[1].find("a").contents[0])
+                description=rowTableData[0].contents
+                if type(description) == list:
+                    description = str(rowTableData[0].contents[0])
                 if " 0 " in str(rowTableData[1].contents) or ">0<" in str(rowTableData[1].contents):
                     addrenaline = 0
+                    sacrifice="0"
                 else:
-                    addrenaline=int(rowTableData[1].contents[0])
+                    # If int, its an adrenaline record
+                    if str(rowTableData[1].contents[0]).isdigit():
+                        addrenaline=int(rowTableData[1].contents[0])
+                    else:
+                        # this is a sacrifice record, not adrenaline
+                        sacrifice=str(rowTableData[1].contents[1]).strip()
                 energy=int(rowTableData[2].find("span").contents[0])
                 activationtime=float(rowTableData[3].find("span").contents[0])
-                rechargeTime=float(rowTableData[4].find("span").contents[0])
-                attribute=rowTableData[6].contents[0]
+                if str(rowTableData[4].find("span").contents[0]).isnumeric():
+                    rechargeTime=float(rowTableData[4].find("span").contents[0])
+                else:
+                    # Could improve/make more flexible eventually
+                    rechargeTime=-1
+                attribute=str(rowTableData[6].contents[0])
+
+                if attribute == '<span style="display: none;">Z</span>':
+                    attribute="None"
                 campaign=rowTableData[7].find("a").contents
+
                 skill = SkillContainer(
                     iconLink=imageLink,
                     name=name,
@@ -104,7 +125,8 @@ def processSkillList(url: str, clazz: str, allSkillsByclass):
                     rechargeTime=rechargeTime,
                     attribute=attribute,
                     campaign=campaign,
-                    clazz=clazz
+                    clazz=clazz,
+                    sacrifice=sacrifice
                 )
 
                 allSkillsByclass[clazz].append(skill)
@@ -172,11 +194,6 @@ if __name__ == '__main__':
         allSkillsByclass=ALL_SKILLS_BY_CLASS
     )
 
-    processSkillList(
-        "https://wiki.guildwars.com/wiki/List_of_ranger_skills",
-        clazz="Ranger",
-        allSkillsByclass=ALL_SKILLS_BY_CLASS
-    )
 
     processSkillList(
         "https://wiki.guildwars.com/wiki/List_of_monk_skills",

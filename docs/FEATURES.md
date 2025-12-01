@@ -17,20 +17,23 @@ Feature Emoji table
 * 💭 Add ability to **share** builds between folks and **save** builds to a template (high priority as this would be very useful)
 * 💭 Add ability to specify class attribute settings
 * 💭 Add ability to configure gear specifications per class 
-* 👀BUG - fix issue with some of the classes data mining
 * ✅ **(Intended release v0.0.2)** BUG - Add support for addrenaline in UI 
-* 👀BUG - Add support for necromancer/ritualist "sacrifice" attribute
+* ✅ **(Intended release v0.0.2)** BUG - Add support for necromancer/ritualist "sacrifice" attribute
 * 💭 Mobile support - drag and drop does not work on mobile. Overall website experience may need to change. 
 * ✅ **(Intended release v0.0.2)** rename site from 'ui' --> 'GW Team builder' 
 * ✅ **(Intended release v0.0.2)** Github links/icon in footer working 
+* ✅ **(Intended release v0.0.2)** BUG - Fix 'no attribute' data mining
+* ✅ **(Intended release v0.0.2)** BUG - Fix issue with adrenaline vs overcast - see vaporblade as an exmaple  
+* ✅ **(Intended release v0.0.2)** BUG - Fix data mining issue with res sig
+* 💭 Support 'None' attribute skills in UI (res sig)
 
 ## UI
 
 * 💭 Color scheme needs work
 * 💭 Drag and drop functionality could be improved a bit 
-* 👀 Clear skills when selecting class
+* 💭 Clear skills when selecting class
 * 💭 Player skill bars could be made more concise
-* 👀 Player skill bar should clear skills when class changes 
+* 💭 Player skill bar should clear skills when class changes 
 * 👀 Make navbar look nice lol 
 
 ## Documentation 
