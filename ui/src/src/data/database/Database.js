@@ -62,6 +62,9 @@ export class Database {
 			this.campaign = campaign
 			this.clazz = clazz
 	  */
+
+
+
 	  let gwSkill = new GwSkill(
 	  	clazzSkills[i]['icon'],
 	  	clazzSkills[i]['name'],
@@ -71,7 +74,8 @@ export class Database {
 	  	clazzSkills[i]['rechargeTime'],
 	  	clazzSkills[i]['attribute'],
 	  	clazzSkills[i]['campaign'],
-	  	clazz
+	  	clazz,
+	  	clazzSkills[i]['addrenaline']
 	  )
 	  console.log(gwSkill)
 	  Database.databaseData[clazz][gwSkill.name] = gwSkill

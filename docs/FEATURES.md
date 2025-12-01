@@ -18,7 +18,7 @@ Feature Emoji table
 * 💭 Add ability to specify class attribute settings
 * 💭 Add ability to configure gear specifications per class 
 * 👀BUG - fix issue with some of the classes data mining
-* 👀BUG - Add support for addrenaline in UI 
+* ✅ **(Intended release v0.0.2)** BUG - Add support for addrenaline in UI 
 * 👀BUG - Add support for necromancer/ritualist "sacrifice" attribute
 * 💭 Mobile support - drag and drop does not work on mobile. Overall website experience may need to change. 
 * ✅ **(Intended release v0.0.2)** rename site from 'ui' --> 'GW Team builder' 

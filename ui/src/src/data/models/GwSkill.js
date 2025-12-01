@@ -38,7 +38,11 @@ export class GwSkill {
 		// what GW campaign the skill is from 
 		campaign,
 		// class specific to this skill 
-		clazz
+		clazz,
+		// optional - adrenaline
+		adrenaline = null,
+		// optional sacrifice attribute
+		sacrifice = null
 	){
 		this.skillIconLocation = skillIconLocation
 		this.name = name
@@ -55,6 +59,8 @@ export class GwSkill {
 		} else {
 		    this.isElite = false
 		}
+		this.adrenaline = adrenaline
+		this.sacrifice = sacrifice
 	}
 }
 

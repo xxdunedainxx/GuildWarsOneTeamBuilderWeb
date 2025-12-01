@@ -45,6 +45,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
       activationTime: props.activationTime,
       rechargeTime: props.rechargeTime,
       description: props.description,
+      adrenaline: props.adrenaline
     };
   }
 
@@ -70,6 +71,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
             activationTime: skill.activationTime,
             rechargeTime: skill.rechargeTime,
             description: skill.description,
+            adrenaline: skill.adrenaline
           });
         }
       }
@@ -106,11 +108,12 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
       activationTime: 0,
       rechargeTime: 0,
       description: "",
+      adrenaline: 0
     });
   };
 
   render() {
-    const { name, clazz, attribute, energy, activationTime, rechargeTime, description } = this.state;
+    const { name, clazz, attribute, energy, activationTime, rechargeTime, description, adrenaline } = this.state;
     const { isDraggableSkill } = this.props;
 
     return (
@@ -126,10 +129,6 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
         }}
         draggable={!!name} // only draggable if it has a skill
         onDragStart={(e) => {
-//             if (this.tooltipRef.current) {
-//                 console.log(tooltipRef)
-//               this.tooltipRef.current.hide();
-//             }
           e.dataTransfer.setData("application/json", JSON.stringify(this.state));
 
         }}
@@ -171,12 +170,22 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                       <div><strong>{name}</strong></div>
                       <div><strong>Class:</strong> {clazz}</div>
                       <div><strong>Attribute:</strong> {attribute}</div>
-                      <div>
-                        <strong>
-                          <img src="./utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
-                          Energy:
-                        </strong> {energy}
-                      </div>
+                        {energy !== 0 && (
+                          <div>
+                            <strong>
+                              <img src="./utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              Energy:
+                            </strong> {energy}
+                          </div>
+                        )}
+                       {adrenaline !== 0 && adrenaline !== "" && adrenaline !== undefined && (
+                          <div>
+                            <strong>
+                              <img src="./utilIcons/adrenaline.png" alt="Adrenaline" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              Adrenaline:
+                            </strong> {adrenaline}
+                          </div>
+                        )}
                       <div>
                         <strong>
                           <img src="./utilIcons/activation.png" alt="Activation" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
