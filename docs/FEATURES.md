@@ -57,3 +57,4 @@ Feature Emoji table
 
 * 💭 Compile and prep release script 
 * 💭 Make vite 'base' url more configurable for local dev 
+* ✅ Fix version footer + update site change log 
