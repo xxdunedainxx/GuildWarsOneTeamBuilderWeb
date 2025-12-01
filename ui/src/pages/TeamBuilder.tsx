@@ -1,9 +1,21 @@
+import React, { useState, Suspense, lazy, useEffect } from "react";
+
 import SkillGrid from "../components/SkillGrid/SkillGrid";
 import Setup from '../src/utils/Setup';
 import Database from '../src/data/database/Database';
-import SearchableSkillGrid from '../components/SkillGrid/SearchableSkillGrid';
+const SearchableSkillGrid = lazy(() =>
+  import("../components/SkillGrid/SearchableSkillGrid")
+);
 
 export default function TeamBuilder() {
+      const [isLoading, setIsLoading] = useState(true);
+
+      useEffect(() => {
+        // Wait a tick so loading message is visible even if component is cached
+        const timeout = setTimeout(() => setIsLoading(false), 50);
+        return () => clearTimeout(timeout);
+      }, []);
+
     return (
       <div>
       <h2>Some information on how to use the tool (may be moved to a 'user guide' in the future)</h2>
@@ -50,8 +62,14 @@ export default function TeamBuilder() {
         <SkillGrid />
         </div>
         <div style={{ flex: 2, minWidth: "27.5%" }}>
-            <SearchableSkillGrid />
-        </div>
+            {isLoading ? (
+              <div>Loading skills...</div>
+            ) : (
+              <Suspense fallback={<div>Loading skills...</div>}>
+                <SearchableSkillGrid />
+              </Suspense>
+            )}
+         </div>
         </div>
         </div>
     )

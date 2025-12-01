@@ -183,7 +183,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                         {energy !== 0 && (
                           <div>
                             <strong>
-                              <img src="./utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              <img src="./utilIcons/energy.png" alt="Energy" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                               Energy:
                             </strong> {energy}
                           </div>
@@ -191,7 +191,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                        {adrenaline !== 0 && adrenaline !== "" && adrenaline !== undefined && (
                           <div>
                             <strong>
-                              <img src="./utilIcons/adrenaline.png" alt="Adrenaline" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              <img src="./utilIcons/adrenaline.png" alt="Adrenaline" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                               Adrenaline:
                             </strong> {adrenaline}
                           </div>
@@ -199,7 +199,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                        {sacrifice !== 0 && sacrifice !== "" && sacrifice !== undefined && (
                           <div>
                             <strong>
-                              <img src="./utilIcons/sacrifice.png" alt="sacrifice" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              <img src="./utilIcons/sacrifice.png" alt="sacrifice" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                               sacrifice:
                             </strong> {sacrifice}
                           </div>
@@ -207,7 +207,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                         {exhaustion !== 0 && exhaustion !== "" && exhaustion !== undefined && (
                           <div>
                             <strong>
-                              <img src="./utilIcons/exhaustion.png" alt="exhaustion" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                              <img src="./utilIcons/exhaustion.png" alt="exhaustion" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                               exhaustion:
                             </strong> {exhaustion}
                           </div>
@@ -220,7 +220,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                       </div>
                       <div>
                         <strong>
-                          <img src="./utilIcons/rechargeIcon.png" alt="Recharge" style={{ width: "16px", height: "16px", marginRight: "4px" }} />
+                          <img src="./utilIcons/rechargeIcon.png" alt="Recharge" style={{ width: "16px", height: "16px", marginRight: "4px" }} loading="lazy" />
                           Recharge:
                         </strong> {rechargeTime}s
                       </div>
@@ -234,6 +234,7 @@ export default class SkillGridCell extends Component<SkillGridCellProps, SkillGr
                   src={`./images/${name}.jpg`}
                   alt={name}
                   style={{ width: "60px", height: "60px", display: "block", margin: "0 auto" }}
+                  loading="lazy"
                 />
                 <div>{name}</div>
                </div>

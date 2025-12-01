@@ -11,7 +11,7 @@ export class Database {
   // used for indexing/searching skills by name later 
   static skillNames = []
 
-  static InitializeDBInJSMem(){
+  static async InitializeDBInJSMem(){
     Logger.info('Initializing DB')
     Database.rawDb = rawDbFile
     console.log(Database.rawDb)

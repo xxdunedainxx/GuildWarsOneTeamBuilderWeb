@@ -37,7 +37,7 @@ Feature Emoji table
 * 💭 Clear skills when selecting class
 * 💭 Player skill bars could be made more concise
 * 💭 Player skill bar should clear skills when class changes 
-* 👀 Make navbar look nice lol 
+* ✅ **(Intended release v0.0.2)** Make navbar look nice lol 
 
 ## Documentation 
 

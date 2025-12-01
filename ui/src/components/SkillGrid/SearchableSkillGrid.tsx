@@ -6,94 +6,98 @@ import GwClasses from '../../src/data/models/GwClass';
 import GwSkill from '../../src/data/models/GwSkill';
 
 
-class SearchableSkillGrid extends Component<{}, { searchTerm: string; selectedClass: string }> {
+class SearchableSkillGrid extends Component<
+  {},
+  { searchTerm: string; selectedClass: string; loading: boolean; skills: GwSkill[] }
+> {
+
   constructor(props: {}) {
     super(props);
     this.state = {
       searchTerm: "",
-      selectedClass: ""
+      selectedClass: "",
+      loading: true,
+      skills: []
     };
+  }
+
+  componentDidMount() {
+    // Defer heavy computation so React can paint "Loading..."
+    setTimeout(() => {
+      const skills = Object.entries(Database.databaseData)
+        .flatMap(([_, skills]) =>
+          Object.values(skills)
+        ) as GwSkill[];
+
+      this.setState({ skills, loading: false });
+    }, 0);
   }
 
   handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchTerm: event.target.value });
-  }
+  };
 
   handleClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     this.setState({ selectedClass: event.target.value });
+  };
+
+  getFilteredSkills() {
+    const { searchTerm, selectedClass, skills } = this.state;
+
+    return skills.filter((skill) => {
+      const matchesClass = !selectedClass || skill.clazz === selectedClass;
+      const matchesSearch = skill.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesClass && matchesSearch;
+    });
   }
 
   render() {
-    const { searchTerm, selectedClass } = this.state;
+    const { loading, searchTerm, selectedClass } = this.state;
+
+    if (loading) {
+      return <div style={{ padding: "10px" }}>Loading skills...</div>;
+    }
+
+    const filteredSkills = this.getFilteredSkills();
     const classNames = Object.values(GwClasses);
 
-    // Flatten all filtered skills into a single array
-    const filteredSkills = Object.entries(Database.databaseData)
-      .filter(([className]) => !selectedClass || className === selectedClass)
-      .flatMap(([_, skills]) =>
-        Object.entries(skills).filter(([skillName]) =>
-          skillName.toLowerCase().includes(searchTerm.toLowerCase())
-        ).map(([_, skillObj]) => skillObj)
-      );
-
     return (
-      <div
-          style={{
-//             maxWidth: "250px", // total height for dropdowns + grid
-            maxHeight: "100vh",       // fill viewport height
-            overflowY: "auto",
-            overflowX: "hidden", // disable horizontal scroll
-            padding: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "15px",
-            marginBottom: "20px",
-          }}
-      >
-        {/* Search input */}
+      <div style={{ maxHeight: "100vh", overflowY: "auto", padding: "10px",
+                    border: "1px solid #ccc", borderRadius: "15px" }}>
+
         <input
           type="text"
           value={searchTerm}
           onChange={this.handleSearchChange}
           placeholder="Search skills..."
-          style={{
-              marginBottom: "10px",
-              padding: "5px",
-              fontSize: "18px",
-              width: "100%",
-              boxSizing: "border-box" // include padding in width
-          }}
+          style={{ marginBottom: "10px", padding: "5px", fontSize: "18px", width: "100%" }}
         />
 
-        {/* Class dropdown */}
-        <select value={selectedClass} onChange={this.handleClassChange} style={{ padding: "5px", marginLeft: "10px", fontSize: "18px"  }}>
+        <select
+          value={selectedClass}
+          onChange={this.handleClassChange}
+          style={{ padding: "5px", marginLeft: "10px", fontSize: "18px" }}
+        >
           <option value="">All Classes</option>
           {classNames.map((cls) => (
             <option key={cls} value={cls}>{cls}</option>
           ))}
         </select>
 
-        {/* Skill grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(1, 1fr)",
-            gap: "8px",
-            marginTop: "20px"
-          }}
-        >
-          {filteredSkills.map((skillObj: GwSkill) => (
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "8px", marginTop: "20px" }}>
+          {filteredSkills.map((skill) => (
             <SkillGridCell
-              key={skillObj.name}
-              name={Array.isArray(skillObj.name) ? skillObj.name[0] : skillObj.name}
-              clazz={skillObj.clazz}
-              attribute={skillObj.attribute}
-              energy={skillObj.energy}
-              activationTime={skillObj.activationTime}
-              rechargeTime={skillObj.rechargeTime}
-              description={skillObj.description}
-              adrenaline={skillObj.adrenaline}
-              exhaustion={skillObj.exhaustion}
-              sacrifice={skillObj.sacrifice}
+              key={skill.name}
+              name={Array.isArray(skill.name) ? skill.name[0] : skill.name}
+              clazz={skill.clazz}
+              attribute={skill.attribute}
+              energy={skill.energy}
+              activationTime={skill.activationTime}
+              rechargeTime={skill.rechargeTime}
+              description={skill.description}
+              adrenaline={skill.adrenaline}
+              exhaustion={skill.exhaustion}
+              sacrifice={skill.sacrifice}
               isDraggableSkill={false}
             />
           ))}
